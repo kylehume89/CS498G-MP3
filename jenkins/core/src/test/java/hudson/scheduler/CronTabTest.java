@@ -43,6 +43,22 @@ import java.util.List;
  */
 public class CronTabTest {
 
+    public void calTests(Calendar cal) throws ANTLRException {
+        cal.set(2011, 0, 16, 0, 0, 0); // Sunday, Jan 16th 2011, 00:00
+        final String cronStr = "0 23 * * 1-5"; // execute on weekdays @23:00
+
+        final CronTab cron = new CronTab(cronStr);
+        final Calendar next = cron.ceil(cal);
+
+        final Calendar expectedDate = Calendar.getInstance();
+        expectedDate.set(2011, 0, 17, 23, 0, 0); // Expected next: Monday, Jan 17th 2011, 23:00
+        assertEquals(expectedDate.get(Calendar.HOUR), next.get(Calendar.HOUR));
+        assertEquals(expectedDate.get(Calendar.MINUTE), next.get(Calendar.MINUTE));
+        assertEquals(expectedDate.get(Calendar.YEAR), next.get(Calendar.YEAR));
+        assertEquals(expectedDate.get(Calendar.MONTH), next.get(Calendar.MONTH));
+        assertEquals(expectedDate.get(Calendar.DAY_OF_MONTH), next.get(Calendar.DAY_OF_MONTH)); // FAILS: is Monday, Jan 10th, 23:00
+    }
+
     @Test
     public void test1() throws ANTLRException {
         new CronTab("@yearly");
@@ -97,19 +113,7 @@ public class CronTabTest {
     @Test
     public void testCeil4() throws ANTLRException {
         final Calendar cal = Calendar.getInstance(new Locale("de", "de"));
-        cal.set(2011, 0, 16, 0, 0, 0); // Sunday, Jan 16th 2011, 00:00
-        final String cronStr = "0 23 * * 1-5"; // execute on weekdays @23:00
-
-        final CronTab cron = new CronTab(cronStr);
-        final Calendar next = cron.ceil(cal);
-
-        final Calendar expectedDate = Calendar.getInstance();
-        expectedDate.set(2011, 0, 17, 23, 0, 0); // Expected next: Monday, Jan 17th 2011, 23:00
-        assertEquals(expectedDate.get(Calendar.HOUR), next.get(Calendar.HOUR));
-        assertEquals(expectedDate.get(Calendar.MINUTE), next.get(Calendar.MINUTE));
-        assertEquals(expectedDate.get(Calendar.YEAR), next.get(Calendar.YEAR));
-        assertEquals(expectedDate.get(Calendar.MONTH), next.get(Calendar.MONTH));
-        assertEquals(expectedDate.get(Calendar.DAY_OF_MONTH), next.get(Calendar.DAY_OF_MONTH)); // FAILS: is Monday, Jan 10th, 23:00
+        calTests(cal);
     }
 
     /**
@@ -119,19 +123,7 @@ public class CronTabTest {
     @Test
     public void testCeil5() throws ANTLRException {
         final Calendar cal = Calendar.getInstance(new Locale("de", "at"));
-        cal.set(2011, 0, 16, 0, 0, 0); // Sunday, Jan 16th 2011, 00:00
-        final String cronStr = "0 23 * * 1-5"; // execute on weekdays @23:00
-
-        final CronTab cron = new CronTab(cronStr);
-        final Calendar next = cron.ceil(cal);
-
-        final Calendar expectedDate = Calendar.getInstance();
-        expectedDate.set(2011, 0, 17, 23, 0, 0); // Expected next: Monday, Jan 17th 2011, 23:00
-        assertEquals(expectedDate.get(Calendar.HOUR), next.get(Calendar.HOUR));
-        assertEquals(expectedDate.get(Calendar.MINUTE), next.get(Calendar.MINUTE));
-        assertEquals(expectedDate.get(Calendar.YEAR), next.get(Calendar.YEAR));
-        assertEquals(expectedDate.get(Calendar.MONTH), next.get(Calendar.MONTH));
-        assertEquals(expectedDate.get(Calendar.DAY_OF_MONTH), next.get(Calendar.DAY_OF_MONTH)); // FAILS: is Monday, Jan 10th, 23:00
+        calTests(cal);
     }
 
     @Test

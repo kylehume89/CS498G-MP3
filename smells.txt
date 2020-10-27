@@ -6,3 +6,6 @@ Question 2:
 
 Question 4:
 	You can fix this smell by putting the repeated code into a loop.
+
+Question 6:
+	I fixed the smell in hudson.scheduler.CronTabTest. This was fixed by consolidating the repeated lines into a function.
