@@ -1,3 +1,5 @@
 Question 1:
 	This is a duplicated code smell and can be fixed by consolidating it into a function.
 
+Question 2:
+	This is a feature envy code smell. It is fixed by moving the function to the jenkins class.
