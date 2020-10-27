@@ -486,6 +486,7 @@ hudson/security/TokenBasedRememberMeServices2Test.class
 hudson/LauncherTest$QuietBatchFile$DescriptorImpl.class
 hudson/triggers/TriggerStartTest.class
 hudson/RelativePathTest$Model.class
+jenkins/IdStrategyTest.class
 jenkins/model/ExtensionTypeHierarchyTest$Animal.class
 hudson/model/UserPropertyTest$UserProperty2$DescriptorImpl.class
 hudson/console/UrlAnnotatorTest$1.class
