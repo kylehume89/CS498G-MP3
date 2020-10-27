@@ -1,0 +1,3 @@
+Question 1:
+	This is a duplicated code smell and can be fixed by consolidating it into a function.
+
